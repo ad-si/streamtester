@@ -1,0 +1,24 @@
+{
+  "name": "streamtester",
+  "version": "0.1.0",
+  "description": "A writable stream which can perform specified tests on the written data",
+  "main": "source/index.js",
+  "scripts": {
+    "test": "node source/test.js",
+    "prepublish": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adius/streamtester"
+  },
+  "keywords": [
+    "stream",
+    "test"
+  ],
+  "author": "Adrian Sieber",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adius/streamtester/issues"
+  },
+  "homepage": "https://github.com/adius/streamtester#readme"
+}
