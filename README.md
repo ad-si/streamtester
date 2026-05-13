@@ -1,6 +1,6 @@
 # StreamTester
 
-A writable stream which can perform specified tests on the written data
+A writable stream which can perform specified tests on the written data.
 
 ## Installation
 
@@ -10,14 +10,22 @@ npm install --save-dev streamtester
 
 ## Usage
 
-```js
-const fs = require('fs')
-const packageStream = fs.createReadStream('./package.json')
-const StreamTester = require('streamtester')
+```ts
+import { createReadStream } from "node:fs"
+import { strict as assert } from "node:assert"
+import { StreamTester } from "streamtester"
+
 const streamTester = new StreamTester({
-  test: (chunk) =>
-    console.assert(JSON.parse(chunk.toString()).name === 'streamtester')
+  test: (chunk) => {
+    assert.equal(JSON.parse(String(chunk)).name, "streamtester")
+  },
 })
 
-packageStream.pipe(streamTester)
+createReadStream("./package.json").pipe(streamTester)
 ```
+
+### Options
+
+- `test(chunk)` — called for every chunk (or, when `filter` is set, for every truthy filtered chunk).
+- `filter(chunk)` — transforms a chunk before testing. Falsy return values skip the chunk.
+- `testFirst(chunk)` — called once with the first chunk written to the stream.

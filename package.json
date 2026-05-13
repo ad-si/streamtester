@@ -2,10 +2,23 @@
   "name": "streamtester",
   "version": "0.2.0",
   "description": "A writable stream which can perform specified tests on the written data",
-  "main": "source/index.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "source"
+  ],
   "scripts": {
-    "test": "node source/test.js",
-    "prepublish": "npm test"
+    "build": "tsc",
+    "test": "node --experimental-strip-types source/test.ts",
+    "prepublishOnly": "npm run build && npm test"
   },
   "repository": {
     "type": "git",
@@ -20,5 +33,12 @@
   "bugs": {
     "url": "https://github.com/adius/streamtester/issues"
   },
-  "homepage": "https://github.com/adius/streamtester#readme"
+  "homepage": "https://github.com/adius/streamtester#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  }
 }
