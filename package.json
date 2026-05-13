@@ -1,6 +1,6 @@
 {
   "name": "streamtester",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A writable stream which can perform specified tests on the written data",
   "type": "module",
   "main": "dist/index.js",
